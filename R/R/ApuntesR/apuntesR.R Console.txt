@@ -1,0 +1,757 @@
+
+R version 4.5.1 (2025-06-13) -- "Great Square Root"
+Copyright (C) 2025 The R Foundation for Statistical Computing
+Platform: x86_64-apple-darwin20
+
+R es un software libre y viene sin GARANTIA ALGUNA.
+Usted puede redistribuirlo bajo ciertas circunstancias.
+Escriba 'license()' o 'licence()' para detalles de distribucion.
+
+R es un proyecto colaborativo con muchos contribuyentes.
+Escriba 'contributors()' para obtener más información y
+'citation()' para saber cómo citar R o paquetes de R en publicaciones.
+
+Escriba 'demo()' para demostraciones, 'help()' para el sistema on-line de ayuda,
+o 'help.start()' para abrir el sistema de ayuda HTML con su navegador.
+Escriba 'q()' para salir de R.
+
+[R.app GUI 1.82 (8536) x86_64-apple-darwin20]
+
+> getwd()
+[1] "/Users/macbookair/R"
+> 
+> 
+> getwd()
+[1] "/Users/macbookair/Desktop/Bioinfo/R/Apuntes R-20251006"
+> ##################################################################################################        
+> 
+> ##### 1.- INTRODUCCION
+> # Para ejecutar este Script pulsa CTRL+R (Windows) o CMD+ENTER (MAC)
+> # Para poner bien el directorio de trabajo:
+> 	# "El directorio de trabajo tiene que ser el mismo del script."
+> 	# Desde el menú: WINDOWS: Archivo -> Cambiar Dir
+> 	#		     MAC: Miscelaneo -> Cambiar Directorio Trabajo
+> 	# Con un comando:
+> 	#	setwd("ruta")
+> # Para saber dónde estamos:
+> getwd()
+[1] "/Users/macbookair/Desktop/Bioinfo/R/Apuntes R-20251006"
+> ##### 2.- INSTALACION Y CARGA DE PAQUETES
+> # Instalar de forma directa (comentar estas líneas si ya lo has instalado)
+> install.packages("UsingR")
+--- Please select a CRAN mirror for use in this session ---
+also installing the dependencies ‘fs’, ‘rappdirs’, ‘farver’, ‘labeling’, ‘R6’, ‘RColorBrewer’, ‘stringi’, ‘backports’, ‘cachem’, ‘memoise’, ‘mime’, ‘sass’, ‘cli’, ‘isoband’, ‘lifecycle’, ‘rlang’, ‘S7’, ‘scales’, ‘vctrs’, ‘withr’, ‘glue’, ‘stringr’, ‘magrittr’, ‘checkmate’, ‘htmlwidgets’, ‘rstudioapi’, ‘digest’, ‘fastmap’, ‘bslib’, ‘evaluate’, ‘fontawesome’, ‘jquerylib’, ‘jsonlite’, ‘tinytex’, ‘xfun’, ‘yaml’, ‘highr’, ‘ggplot2’, ‘gtable’, ‘gridExtra’, ‘data.table’, ‘htmlTable’, ‘viridisLite’, ‘htmltools’, ‘base64enc’, ‘colorspace’, ‘rmarkdown’, ‘knitr’, ‘Formula’, ‘HistData’, ‘Hmisc’
+
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/fs_1.6.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rappdirs_0.3.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/farver_2.1.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/labeling_0.4.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/R6_2.6.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/RColorBrewer_1.1-3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/stringi_1.8.7.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/backports_1.5.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/cachem_1.1.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/memoise_2.0.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/mime_0.13.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/sass_0.4.10.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/cli_3.6.5.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/isoband_0.2.7.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/lifecycle_1.0.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rlang_1.1.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/S7_0.2.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/scales_1.4.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/vctrs_0.6.5.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/withr_3.0.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/glue_1.8.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/stringr_1.5.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/magrittr_2.0.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/checkmate_2.3.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/htmlwidgets_1.6.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rstudioapi_0.17.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/digest_0.6.37.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/fastmap_1.2.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/bslib_0.9.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/evaluate_1.0.5.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/fontawesome_0.5.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/jquerylib_0.1.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/jsonlite_2.0.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/tinytex_0.57.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/xfun_0.53.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/yaml_2.3.10.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/highr_0.11.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/ggplot2_4.0.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/gtable_0.3.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/gridExtra_2.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/data.table_1.17.8.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/htmlTable_2.4.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/viridisLite_0.4.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/htmltools_0.5.8.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/base64enc_0.1-3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/colorspace_2.1-2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rmarkdown_2.30.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/knitr_1.50.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/Formula_1.2-5.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/HistData_0.9-3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/Hmisc_5.2-4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/UsingR_2.0-7.tgz'
+
+The downloaded binary packages are in
+	/var/folders/n3/7dgw7k8j7fz80t50xfc4czbh0000gn/T//Rtmp75LC8n/downloaded_packages
+> library(UsingR)
+Cargando paquete requerido: MASS
+Cargando paquete requerido: HistData
+Cargando paquete requerido: Hmisc
+
+Adjuntando el paquete: ‘Hmisc’
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+> # Instalar solo si no está instalado (avanzado)
+> paquetes <- c("UsingR","devtools","pacman","ggplot2")  # aquí poner los paquetes a instalar
+> instalar <- paquetes[!paquetes %in% installed.packages()]
+> if(length(instalar)) install.packages(instalar)
+also installing the dependencies ‘Rcpp’, ‘utf8’, ‘askpass’, ‘credentials’, ‘sys’, ‘zip’, ‘gitcreds’, ‘ini’, ‘httpuv’, ‘xtable’, ‘sourcetools’, ‘later’, ‘promises’, ‘fansi’, ‘systemfonts’, ‘textshaping’, ‘pillar’, ‘pkgconfig’, ‘diffobj’, ‘clipr’, ‘crayon’, ‘curl’, ‘gert’, ‘gh’, ‘purrr’, ‘rprojroot’, ‘whisker’, ‘shiny’, ‘callr’, ‘processx’, ‘downlit’, ‘httr2’, ‘openssl’, ‘ragg’, ‘tibble’, ‘xml2’, ‘prettyunits’, ‘xopen’, ‘brew’, ‘commonmark’, ‘cpp11’, ‘brio’, ‘praise’, ‘ps’, ‘waldo’, ‘usethis’, ‘desc’, ‘ellipsis’, ‘miniUI’, ‘pkgbuild’, ‘pkgdown’, ‘pkgload’, ‘profvis’, ‘rcmdcheck’, ‘remotes’, ‘roxygen2’, ‘rversions’, ‘sessioninfo’, ‘testthat’, ‘urlchecker’
+
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/Rcpp_1.1.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/utf8_1.2.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/askpass_1.2.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/credentials_2.0.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/sys_3.4.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/zip_2.3.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/gitcreds_0.1.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/ini_0.3.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/httpuv_1.6.16.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/xtable_1.8-4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/sourcetools_0.1.7-1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/later_1.4.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/promises_1.3.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/fansi_1.0.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/systemfonts_1.3.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/textshaping_1.0.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/pillar_1.11.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/pkgconfig_2.0.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/diffobj_0.3.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/clipr_0.8.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/crayon_1.5.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/curl_7.0.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/gert_2.1.5.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/gh_1.5.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/purrr_1.1.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rprojroot_2.1.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/whisker_0.4.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/shiny_1.11.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/callr_3.7.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/processx_3.8.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/downlit_0.4.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/httr2_1.2.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/openssl_2.3.4.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/ragg_1.5.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/tibble_3.3.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/xml2_1.4.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/prettyunits_1.2.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/xopen_1.0.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/brew_1.0-10.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/commonmark_2.0.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/cpp11_0.5.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/brio_1.1.5.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/praise_1.0.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/ps_1.9.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/waldo_0.6.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/usethis_3.2.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/desc_1.4.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/ellipsis_0.3.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/miniUI_0.1.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/pkgbuild_1.4.8.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/pkgdown_2.1.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/pkgload_1.4.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/profvis_0.4.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rcmdcheck_1.4.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/remotes_2.5.0.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/roxygen2_7.3.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/rversions_2.1.2.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/sessioninfo_1.2.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/testthat_3.2.3.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/urlchecker_1.0.1.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/devtools_2.4.6.tgz'
+probando la URL 'https://ftp.cixug.es/CRAN/bin/macosx/big-sur-x86_64/contrib/4.5/pacman_0.5.1.tgz'
+
+The downloaded binary packages are in
+	/var/folders/n3/7dgw7k8j7fz80t50xfc4czbh0000gn/T//Rtmp75LC8n/downloaded_packages
+> lapply(paquetes, library, character.only = TRUE)
+Cargando paquete requerido: usethis
+[[1]]
+ [1] "UsingR"    "Hmisc"     "HistData"  "MASS"      "stats"     "graphics"  "grDevices" "utils"     "datasets" 
+[10] "methods"   "base"     
+
+[[2]]
+ [1] "devtools"  "usethis"   "UsingR"    "Hmisc"     "HistData"  "MASS"      "stats"     "graphics"  "grDevices"
+[10] "utils"     "datasets"  "methods"   "base"     
+
+[[3]]
+ [1] "pacman"    "devtools"  "usethis"   "UsingR"    "Hmisc"     "HistData"  "MASS"      "stats"     "graphics" 
+[10] "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+[[4]]
+ [1] "ggplot2"   "pacman"    "devtools"  "usethis"   "UsingR"    "Hmisc"     "HistData"  "MASS"      "stats"    
+[10] "graphics"  "grDevices" "utils"     "datasets"  "methods"   "base"     
+
+> # Acceso al manual
+> help.start()
+starting httpd help server ... done
+If the browser launched by '/usr/bin/open' is already running, it is *not* restarted, and you must switch
+    to its window.
+Otherwise, be patient ...
+> help(hist) # aquí dentro de los paréntesis se pone la función sobre la que queremos ayuda
+> ##### 3.- R COMO CALCULADORA
+> 1+1
+[1] 2
+> 2+3*4
+[1] 14
+> 3^2
+[1] 9
+> exp(1)
+[1] 2.718282
+> sqrt(10)
+[1] 3.162278
+> pi
+[1] 3.141593
+> 2*pi*6378 #circunferencia de la Tierra
+[1] 40074.16
+> # EJERCICIO:
+> # Calcula el área de un círculo de radio 10 (A=pi*r^2).
+> Pi*10^2
+Error: objeto 'Pi' no encontrado
+> pi*10^2
+[1] 314.1593
+> ##### 4.- VARIABLES
+> # Para asignar valores se puede usar indistintamente "<-" o "="
+> # Numeric: contienen números con decimales
+> # Booleanos: TRUE or FALSE
+> # Strings: secuencias de caracteres
+> # en R sobretodo listas y tables, nunca diccionarios
+> # Nombres de variables: pueden incluir puntos, "_" pero NUNCA "-". NUNCA empiezan por números.
+> # Cuidado con usar nombres con palabras especiales, como nombres de funciones para nombrar variables.
+> num <- 10     # numérico, esa flecha es igual que usar un igual
+> texto  <- "Hola" # carácter
+> logico <- TRUE   # lógico
+> x<-1
+> y<-3
+> z<-4
+> x*y*z
+[1] 12
+> x*y*Z #Hay distinción entre mayúsculas y minúsculas!
+Error: objeto 'Z' no encontrado
+> This.Year<-2023
+> # EJERCICIO:
+> # Crea tres variables: tu edad, tu nombre y si te gusta R (TRUE/FALSE).
+> edad=23
+> nombre="antonia"
+> gustaR=FALSE
+> ##### 5.- LISTAS / VECTORES
+> # Series (listas o vectores)
+> # Diferentes maneras de crearlos y operar con ellos
+> # Crearlos con la función c(): 
+> x<-c(2,0,0,4)
+> y<-c(1,9,9,9)
+> x+y # suma de vectores solo si ambos tienen el mismo tamaño
+[1]  3  9  9 13
+> x*4 # multiplicacion de un numero por todos los elementos del vector
+[1]  8  0  0 16
+> sqrt(x) #aplicacion de la funcion sqrt() sobre todos los elementos del vector
+[1] 1.414214 0.000000 0.000000 2.000000
+> # Crearlos con las funciones rep() y seq()
+> rep(1,10)
+ [1] 1 1 1 1 1 1 1 1 1 1
+> seq(2,6)
+[1] 2 3 4 5 6
+> seq(4,20,by=4)
+[1]  4  8 12 16 20
+> #Para navegar por ellos, se buscan sus posiciones
+> x[1]
+[1] 2
+> x[-1]
+[1] 0 0 4
+> x[-2] #TODOS menos el 2, no como python que rería hasta el antepenúltimo
+[1] 2 0 4
+> x[1]<-3;x  # el ";" permite poner dos líneas de código en una sola, una detrás de la otra
+[1] 3 0 0 4
+> x[-1]<-5;x  # reasignamos valores dentro del vector
+[1] 3 5 5 5
+> y<9 # nos devuelve un booleano dependiendo de si los elementos de ese vector cumplen ese criterio
+[1]  TRUE FALSE FALSE FALSE
+> y[y<9]=2 # reasigna solo si cumple la condicion
+> y
+[1] 2 9 9 9
+> notas <- c(mate = 8, historia = 7, fisica = 9) # Esto de aquí se parece un poco a un diccionario
+> notas								# En verdad es como una tabla
+    mate historia   fisica 
+       8        7        9 
+> notas["mate"] # navegas por el nombre de la columna
+mate 
+   8 
+> mean(notas) # saca la media
+[1] 8
+> notas["1"] # navegas por el nombre de la columna
+<NA> 
+  NA 
+> notas[1] # navegas por el nombre de la columna
+mate 
+   8 
+> mean(notas) # saca la media
+[1] 8
+> # EJERCICIO:
+> # Crea un vector con tus 5 números favoritos y calcula su media.
+> vec_num=c(3,5,7,12,21)
+> mean(vec_num)
+[1] 9.6
+> ##### 6.- DATA FRAMES
+> # Son agrupaciones de vectores o tablas
+> # Es de lo más fácil y común de manejar en R
+> bp<-read.table("bp.txt",header=T) # así leemos el archivo que eta en la carpeta de R
+> bp
+  HEIGHT WEIGHT WAIST HIP BPSYS BPDIA
+1    172     72    87  94 127.5  80.0
+2    166     91   109 107 172.5 100.0
+3    174     80    95 101 123.0  64.0
+4    176     79    93 100 117.0  76.0
+5    166     55    70  94 100.0  60.0
+6    163     76    96  99 160.0  87.5
+> bp<-read.table("bp.txt",header=T) # así leemos el archivo que eta en la carpeta de R. header para que ponga bien los encabezados
+> bp[1,1]
+[1] 172
+> bp[1,1] #fila y columna 1, solo fila y ,1 solo columna
+[1] 172
+> bp["WEIGHT"] 	# Accedemos al contenido de la columna
+  WEIGHT
+1     72
+2     91
+3     80
+4     79
+5     55
+6     76
+> bp[,2] 		# Lo mismo pero no aparece el nombre de la columna
+[1] 72 91 80 79 55 76
+> bp$WEIGHT 		# lo mismo
+[1] 72 91 80 79 55 76
+> bp$WEIGHT[2] 	# Sacar un valor de la columna en concreto es como el = de las columnas
+[1] 91
+> bp[2,] 		# Sacamos una fila entera
+  HEIGHT WEIGHT WAIST HIP BPSYS BPDIA
+2    166     91   109 107 172.5   100
+> bp[2,][1]		# Sacamos un valor de la fila en concreto
+  HEIGHT
+2    166
+> head(iris)       # dataset integrado en R
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+> str(iris)
+'data.frame':	150 obs. of  5 variables:
+ $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
+ $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
+ $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
+ $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
+ $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...
+> summary(iris)
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+ Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100   setosa    :50  
+ 1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300   versicolor:50  
+ Median :5.800   Median :3.000   Median :4.350   Median :1.300   virginica :50  
+ Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199                  
+ 3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800                  
+ Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500                  
+> iris$Species
+  [1] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+ [11] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+ [21] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+ [31] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+ [41] setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa     setosa    
+ [51] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+ [61] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+ [71] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+ [81] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+ [91] versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor versicolor
+[101] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+[111] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+[121] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+[131] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+[141] virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica  virginica 
+Levels: setosa versicolor virginica
+> iris[1:5, c("Sepal.Length", "Species")]
+  Sepal.Length Species
+1          5.1  setosa
+2          4.9  setosa
+3          4.7  setosa
+4          4.6  setosa
+5          5.0  setosa
+> # EJERCICIO:
+> # Obtén la media de Sepal.Width de iris.
+> head(iris)
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa
+> iris[,2]
+  [1] 3.5 3.0 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 3.7 3.4 3.0 3.0 4.0 4.4 3.9 3.5 3.8 3.8 3.4 3.7 3.6 3.3 3.4 3.0 3.4 3.5
+ [29] 3.4 3.2 3.1 3.4 4.1 4.2 3.1 3.2 3.5 3.6 3.0 3.4 3.5 2.3 3.2 3.5 3.8 3.0 3.8 3.2 3.7 3.3 3.2 3.2 3.1 2.3 2.8 2.8
+ [57] 3.3 2.4 2.9 2.7 2.0 3.0 2.2 2.9 2.9 3.1 3.0 2.7 2.2 2.5 3.2 2.8 2.5 2.8 2.9 3.0 2.8 3.0 2.9 2.6 2.4 2.4 2.7 2.7
+ [85] 3.0 3.4 3.1 2.3 3.0 2.5 2.6 3.0 2.6 2.3 2.7 3.0 2.9 2.9 2.5 2.8 3.3 2.7 3.0 2.9 3.0 3.0 2.5 2.9 2.5 3.6 3.2 2.7
+[113] 3.0 2.5 2.8 3.2 3.0 3.8 2.6 2.2 3.2 2.8 2.8 2.7 3.3 3.2 2.8 3.0 2.8 3.0 2.8 3.8 2.8 2.8 2.6 3.0 3.4 3.1 3.0 3.1
+[141] 3.1 3.1 2.7 3.2 3.3 3.0 2.5 3.0 3.4 3.0
+> #otra opcion
+> iris(Sepal.Width)
+Error en iris(Sepal.Width): no se pudo encontrar la función "iris"
+> iris("Sepal.Width")
+Error en iris("Sepal.Width"): no se pudo encontrar la función "iris"
+> iris["Sepal.Width"]
+    Sepal.Width
+1           3.5
+2           3.0
+3           3.2
+4           3.1
+5           3.6
+6           3.9
+7           3.4
+8           3.4
+9           2.9
+10          3.1
+11          3.7
+12          3.4
+13          3.0
+14          3.0
+15          4.0
+16          4.4
+17          3.9
+18          3.5
+19          3.8
+20          3.8
+21          3.4
+22          3.7
+23          3.6
+24          3.3
+25          3.4
+26          3.0
+27          3.4
+28          3.5
+29          3.4
+30          3.2
+31          3.1
+32          3.4
+33          4.1
+34          4.2
+35          3.1
+36          3.2
+37          3.5
+38          3.6
+39          3.0
+40          3.4
+41          3.5
+42          2.3
+43          3.2
+44          3.5
+45          3.8
+46          3.0
+47          3.8
+48          3.2
+49          3.7
+50          3.3
+51          3.2
+52          3.2
+53          3.1
+54          2.3
+55          2.8
+56          2.8
+57          3.3
+58          2.4
+59          2.9
+60          2.7
+61          2.0
+62          3.0
+63          2.2
+64          2.9
+65          2.9
+66          3.1
+67          3.0
+68          2.7
+69          2.2
+70          2.5
+71          3.2
+72          2.8
+73          2.5
+74          2.8
+75          2.9
+76          3.0
+77          2.8
+78          3.0
+79          2.9
+80          2.6
+81          2.4
+82          2.4
+83          2.7
+84          2.7
+85          3.0
+86          3.4
+87          3.1
+88          2.3
+89          3.0
+90          2.5
+91          2.6
+92          3.0
+93          2.6
+94          2.3
+95          2.7
+96          3.0
+97          2.9
+98          2.9
+99          2.5
+100         2.8
+101         3.3
+102         2.7
+103         3.0
+104         2.9
+105         3.0
+106         3.0
+107         2.5
+108         2.9
+109         2.5
+110         3.6
+111         3.2
+112         2.7
+113         3.0
+114         2.5
+115         2.8
+116         3.2
+117         3.0
+118         3.8
+119         2.6
+120         2.2
+121         3.2
+122         2.8
+123         2.8
+124         2.7
+125         3.3
+126         3.2
+127         2.8
+128         3.0
+129         2.8
+130         3.0
+131         2.8
+132         3.8
+133         2.8
+134         2.8
+135         2.6
+136         3.0
+137         3.4
+138         3.1
+139         3.0
+140         3.1
+141         3.1
+142         3.1
+143         2.7
+144         3.2
+145         3.3
+146         3.0
+147         2.5
+148         3.0
+149         3.4
+150         3.0
+> ##### 7.- VECTORES / LISTAS AVANZADOS (chill pero son listas dentro de listas)
+> # Colecciones de variables
+> # Se parecen mucho a las data frames
+> # Tenemos unos genes asociados a tres grupos
+> geneset1<-c(1,4)
+> geneset2<-c(2,5,7,8)
+> geneset3<-c(1,5,6)
+> # Almacenamos los datos en una lista
+> genesets<-vector("list",3)
+> genesets[[1]]<-geneset1
+> genesets[[2]]<-geneset2
+> genesets[[3]]<-geneset3
+> # Ahora le ponemos nombre a los grupos
+> names(genesets)=paste0("set",1:3)
+> genesets
+$set1
+[1] 1 4
+
+$set2
+[1] 2 5 7 8
+
+$set3
+[1] 1 5 6
+
+> # Ahora nombramos a los genes
+> genenames=paste0("gene",1:10)
+> genesets[[1]]=genenames[geneset1]
+> genesets[[2]]=genenames[geneset2]
+> genesets[[3]]=genenames[geneset3]
+> genesets
+$set1
+[1] "gene1" "gene4"
+
+$set2
+[1] "gene2" "gene5" "gene7" "gene8"
+
+$set3
+[1] "gene1" "gene5" "gene6"
+
+> # Extraer elementos de la lista
+> genesets[1]
+$set1
+[1] "gene1" "gene4"
+
+> genesets[[1]]
+[1] "gene1" "gene4"
+> genesets[[1]][1]
+[1] "gene1"
+> unlist(genesets[1])[1]
+  set11 
+"gene1" 
+> length(genesets)
+[1] 3
+> length(genesets[[2]])
+[1] 4
+> # Crear una lista vacía
+> lista_vacia<-list()
+> # Ahora con tres elementos
+> lista_vacia<-vector("list",length=3)
+> # Ahora la llenamos con un bucle
+> for(j in 1:3){ #i y j se usan como localizadores de posición
++ lista_vacia[[j]] <- c(1,2,3*j)
++ }
+> lista_vacia
+[[1]]
+[1] 1 2 3
+
+[[2]]
+[1] 1 2 6
+
+[[3]]
+[1] 1 2 9
+
+> # Añadir elementos. Para eso el data frame es lo mismo que la lista
+> lista_vacia[[4]] <- data.frame(x=c(8,5,3),y=c(7,9,1))
+> lista_vacia
+[[1]]
+[1] 1 2 3
+
+[[2]]
+[1] 1 2 6
+
+[[3]]
+[1] 1 2 9
+
+[[4]]
+  x y
+1 8 7
+2 5 9
+3 3 1
+
+> # Eliminar elementos
+> lista_vacia[[2]]<-NULL #asignar null a la posición
+> #lista_vacia[-2] #equivalentex
+> #lista_vacia[-2] #equivalente
+> lista_vacia
+[[1]]
+[1] 1 2 3
+
+[[2]]
+[1] 1 2 9
+
+[[3]]
+  x y
+1 8 7
+2 5 9
+3 3 1
+
+> ##### 8.- CONDICIONALES: IF ELSE IFELSE
+> ##### 8.- CONDICIONALES: IF ELSE IFELSE (chill ifelse q es la funcion comprimida)
+> if(4 > 5) {
++   "Verdadero"
++ } else {
++   "Falso"
++ }
+[1] "Falso"
+> num <- 1:8
+> ifelse(num %% 2 == 0, "Par", "Non") # Forma comprimida, más dificil de entender
+[1] "Non" "Par" "Non" "Par" "Non" "Par" "Non" "Par"
+> ##### 9.- BUCLES-LOOPS
+> ### BUCLE FOR
+> dado <- 1:6
+> for(cara in dado) {
++   print(cara ^ 2)
++ }
+[1] 1
+[1] 4
+[1] 9
+[1] 16
+[1] 25
+[1] 36
+> ### SALIDA DE BUCLES: BREAK Y NEXT
+> for(i in 1:10) {
++   if(i == 3) {
++     break
++   }
++   print(i)
++ }
+[1] 1
+[1] 2
+> numero <- 20
+> while(numero > 5) {
++   if(numero == 15) {
++     break
++   }
++   numero <- numero - 1
++ }
+> numero
+[1] 15
+> for(i in 1:4) {
++   if(i == 3) {
++     next
++   }
++   print(i)
++ }
+[1] 1
+[1] 2
+[1] 4
+> ##### 10.- FUNCIONES: APPLY y  LAPPLY
+> ### APPLY apply(x,margin,fun) 
+> # Margin, 1 es filas y 2 columnas. 
+> # Fun es la funcion que como requisito siempre tiene que admitir funciones
+> mi_df <- data.frame(v1 = 1:3, v2 = 4:6)
+> mi_df
+  v1 v2
+1  1  4
+2  2  5
+3  3  6
+> # Coerción a matriz
+> mi_matriz <- as.matrix(mi_df)
+> mi_matriz
+     v1 v2
+[1,]  1  4
+[2,]  2  5
+[3,]  3  6
+> # Verificamos que sea matriz
+> is.matrix(mi_matriz)
+[1] TRUE
+> class(mi_matriz)
+[1] "matrix" "array" 
+> mi_matriz
+     v1 v2
+[1,]  1  4
+[2,]  2  5
+[3,]  3  6
+> apply(mi_matriz,1,mean)
+[1] 2.5 3.5 4.5
+> apply(mi_matriz,2,sum)
+v1 v2 
+ 6 15 
+> 
